@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const bottomColorHeight = 60.0;
 const activeCardColor = Color(0xFF1D1E33);
@@ -28,8 +29,46 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: ReusableCard(colour: inactiveCardColor)),
-                Expanded(child: ReusableCard(colour: inactiveCardColor)),
+                Expanded(
+                    child: ReusableCard(
+                  colour: inactiveCardColor,
+                  cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.mars,
+                          size: 80.0,
+                          color: Colors.blue,
+                        ),
+                        SizedBox(
+                          height: 15.0,
+                        ),
+                        Text(
+                          'MALE',
+                          style: TextStyle(
+                              fontSize: 18.0, color: Color(0xFF8D8E98)),
+                        ),
+                      ]),
+                )),
+                Expanded(
+                    child: ReusableCard(
+                  colour: inactiveCardColor,
+                  cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.venus,
+                          size: 80.0,
+                          color: Colors.pink,
+                        ),
+                        SizedBox(
+                          height: 15.0,
+                        ),
+                        Text('FEMALE',
+                            style: TextStyle(
+                                fontSize: 18.0, color: Color(0xFF8D8E98))),
+                      ]),
+                )),
               ],
             ),
           ),
@@ -67,9 +106,10 @@ class _InputPageState extends State<InputPage> {
 }
 
 class ReusableCard extends StatelessWidget {
-  ReusableCard({required this.colour});
+  ReusableCard({required this.colour, this.cardChild});
 
   final Color colour;
+  final Widget? cardChild;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +119,7 @@ class ReusableCard extends StatelessWidget {
         color: colour,
         borderRadius: BorderRadius.circular(10.0),
       ),
+      child: cardChild,
     );
   }
 }
